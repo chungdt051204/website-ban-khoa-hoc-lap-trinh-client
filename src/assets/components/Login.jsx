@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useContext } from "react";
 import AppContext from "./AppContext";
+import { url } from "../../App";
 import { toast } from "react-toastify";
 import LoginGoogle from "./LoginGoogle";
 import "./components-css/Auth.css";
@@ -20,7 +21,7 @@ export default function Login() {
       setLoginNotValid("Vui lòng điền đầy đủ thông tin");
       return;
     } else {
-      fetch("http://localhost:3000/login", {
+      fetch(`${url}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AppContext from "./AppContext";
+import { url } from "../../App";
 import "./components-css/CoursesFree.css";
 
 export default function CoursesFree() {
@@ -15,7 +16,7 @@ export default function CoursesFree() {
               if (value.isFree) {
                 const image = value.image.includes("https")
                   ? value.image
-                  : `http://localhost:3000/images/course/${value.image}`;
+                  : `${url}/images/course/${value.image}`;
                 return (
                   <div key={value._id} className="course-free-item">
                     <Link to={`/course?id=${value._id}`}>

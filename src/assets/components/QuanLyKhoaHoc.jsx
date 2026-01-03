@@ -97,7 +97,7 @@ export default function QuanLyKhoaHoc() {
     formData.append("price", price);
     formData.append("image", addImage.current.files[0]);
     formData.append("thumbnail", addThumbnail.current.files[0]);
-    fetch("http://localhost:3000/course", {
+    fetch(`${url}/course`, {
       method: "POST",
       body: formData,
     })
@@ -128,7 +128,7 @@ export default function QuanLyKhoaHoc() {
     formData.append("price", price);
     formData.append("image", updateImage.current.files[0]);
     formData.append("thumbnail", updateThumbnail.current.files[0]);
-    fetch(`http://localhost:3000/course?id=${id}`, {
+    fetch(`${url}/course?id=${id}`, {
       method: "PUT",
       body: formData,
     })
@@ -148,7 +148,7 @@ export default function QuanLyKhoaHoc() {
   };
   //Hàm xử lý chức năng xóa khóa học
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/course?id=${id}`, {
+    fetch(`${url}/course?id=${id}`, {
       method: "DELETE",
     })
       .then((res) => {
@@ -220,7 +220,7 @@ export default function QuanLyKhoaHoc() {
               {courses?.map((value, index) => {
                 const image = value.image.includes("https")
                   ? value.image
-                  : `http://localhost:3000/images/course/${value.image}`;
+                  : `${url}/images/course/${value.image}`;
                 const isSelected = index === 0 ? "selected" : "";
                 return (
                   <tr key={index} className={isSelected}>

@@ -26,7 +26,7 @@ export default function QuanLyDanhMuc() {
       setErr("Vui lòng nhập tên danh mục muốn thêm");
       return;
     }
-    fetch("http://localhost:3000/category", {
+    fetch(`${url}/category`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export default function QuanLyDanhMuc() {
   //Hàm xử lý chức năng sửa danh mục
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/category?id=${id}`, {
+    fetch(`${url}/category?id=${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -78,7 +78,7 @@ export default function QuanLyDanhMuc() {
   };
   //Hàm xử lý chức năng xóa danh mục
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/category?id=${id}`, {
+    fetch(`${url}/category?id=${id}`, {
       method: "DELETE",
     })
       .then((res) => {

@@ -106,7 +106,7 @@ export default function OrderDetail() {
                   {orderWithOrderId?.items?.map((value) => {
                     const image = value.courseId.image.includes("https")
                       ? value.courseId.image
-                      : `http://localhost:3000/images/course/${value.courseId.image}`;
+                      : `${url}/images/course/${value.courseId.image}`;
                     return (
                       <tr key={value._id}>
                         <td className="order-detail-course-cell">

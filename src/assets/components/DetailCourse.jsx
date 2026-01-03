@@ -24,7 +24,7 @@ export default function DetailCourse() {
   let thumbnail = null;
   thumbnail = course?.thumbnail?.includes("https")
     ? course.thumbnail
-    : `http://localhost:3000/images/course/${course.thumbnail}`;
+    : `${url}/images/course/${course.thumbnail}`;
   //Tìm kiếm bài học ứng với thứ tự được chọn
   const lesson = course.lessons
     ? course.lessons.find((value) => value.order == lesson_order)
@@ -64,7 +64,7 @@ export default function DetailCourse() {
       });
     }
     if (user) {
-      fetch(`http://localhost:3000/cart?user_id=${user._id}`)
+      fetch(`${url}/cart?user_id=${user._id}`)
         .then((res) => {
           if (res.ok) return res.json();
           throw res;
@@ -77,7 +77,7 @@ export default function DetailCourse() {
             })
           );
         });
-      fetch(`http://localhost:3000/enrollment?user_id=${user._id}`)
+      fetch(`${url}/enrollment?user_id=${user._id}`)
         .then((res) => {
           if (res.ok) return res.json();
           throw res;
@@ -98,7 +98,7 @@ export default function DetailCourse() {
       toast.warning("Bạn chưa đăng nhập");
       return;
     }
-    fetch("http://localhost:3000/cart", {
+    fetch(`${url}/cart`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -358,7 +358,7 @@ export default function DetailCourse() {
             {commentsInCourse?.map((value) => {
               const image = value.userId.avatar.includes("https")
                 ? value.userId.avatar
-                : `http://localhost:3000/images/user/${value.userId.avatar}`;
+                : `${url}/images/user/${value.userId.avatar}`;
               return (
                 <div key={value._id} className="detail-comment-item">
                   <img

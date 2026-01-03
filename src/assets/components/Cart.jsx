@@ -92,7 +92,7 @@ export default function Cart() {
   };
   //Hàm xử lý xóa nhiều item được chọn ra khỏi giỏ hàng
   const handleDeleteItemSelected = () => {
-    fetch(`http://localhost:3000/cart?user_id=${user._id}`, {
+    fetch(`${url}/cart?user_id=${user._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +149,7 @@ export default function Cart() {
       setPhoneNotValid("Số điện thoại hợp lệ phải có 10 ký tự");
       return;
     } else {
-      fetch("http://localhost:3000/order", {
+      fetch(`${url}/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -197,7 +197,7 @@ export default function Cart() {
               {myCart?.items?.map((value) => {
                 const image = value.courseId.image.includes("https")
                   ? value.courseId.image
-                  : `http://localhost:3000/images/course/${value.courseId.image}`;
+                  : `${url}/images/course/${value.courseId.image}`;
                 return (
                   <tr key={value._id}>
                     <td className="col-product">
@@ -321,7 +321,7 @@ export default function Cart() {
                       if (cartItemIdSelected.includes(value._id)) {
                         const image = value.courseId.image.includes("https")
                           ? value.courseId.image
-                          : `http://localhost:3000/images/course/${value.courseId.image}`;
+                          : `${url}/images/course/${value.courseId.image}`;
                         return (
                           <tr key={value._id}>
                             <td className="course-info">

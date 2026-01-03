@@ -1,10 +1,9 @@
+import { url } from "../../App";
 import "./components-css/LoginGoogle.css";
 export default function LoginGoogle() {
   return (
     <div
-      onClick={() =>
-        (window.location.href = "http://localhost:3000/auth/google")
-      }
+      onClick={() => (window.location.href = `${url}/auth/google`)}
       className="login-google-button"
     >
       <div className="google-icon-container">

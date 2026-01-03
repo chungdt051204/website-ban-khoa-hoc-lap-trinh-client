@@ -32,7 +32,7 @@ export default function QuanLyNguoiDung() {
   //Hàm xử lý cập nhật trạng thái người dùng
   const handleSetStatusUser = (user) => {
     const status = user.status === "active" ? "banned" : "active";
-    fetch(`http://localhost:3000/user/${user._id}`, {
+    fetch(`${url}/user/${user._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export default function QuanLyNguoiDung() {
   };
   //Hàm xử lý xóa người dùng
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/user/${id}`, {
+    fetch(`${url}/user/${id}`, {
       method: "DELETE",
     })
       .then((res) => {

@@ -27,7 +27,7 @@ export default function UserNavBar() {
   };
   //Hàm xử lý chức năng đăng xuất
   const handleLogout = () => {
-    fetch("http://localhost:3000/me", {
+    fetch(`${url}/me`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +128,7 @@ export default function UserNavBar() {
                     coursesWithSearchSuggestion.map((value, index) => {
                       const image = value.image.includes("https")
                         ? value.image
-                        : `http://localhost:3000/images/course/${value.image}`;
+                        : `${url}/images/course/${value.image}`;
                       return (
                         <Link to={`/course?id=${value._id}`}>
                           <div className="search-dropdown-item" key={index}>
@@ -156,7 +156,7 @@ export default function UserNavBar() {
                     src={
                       user.avatar.includes("https")
                         ? user.avatar
-                        : `http://localhost:3000/images/user/${user.avatar}`
+                        : `${url}/images/user/${user.avatar}`
                     }
                     alt="avatar"
                     referrerPolicy="no-referrer"

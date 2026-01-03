@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { url } from "../../App";
 import "./components-css/Auth.css";
 
 export default function Register() {
@@ -67,7 +68,7 @@ export default function Register() {
         : female.current.value;
       formData.append("gender", gender);
       formData.append("dateOfBirth", dateOfBirth.current.value);
-      fetch("http://localhost:3000/register", {
+      fetch(`${url}/register`, {
         method: "POST",
         body: formData,
       })

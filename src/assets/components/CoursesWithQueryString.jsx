@@ -79,7 +79,7 @@ export default function CoursesWithQueryString({ text }) {
               coursesWithQueryString.map((value) => {
                 const image = value.image.includes("https")
                   ? value.image
-                  : `http://localhost:3000/images/course/${value.image}`;
+                  : `${url}/images/course/${value.image}`;
                 return (
                   <Link to={`/course?id=${value._id}`} key={value._id}>
                     <div className="course-item">

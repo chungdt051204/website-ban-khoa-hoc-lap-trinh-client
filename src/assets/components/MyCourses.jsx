@@ -32,7 +32,7 @@ export default function MyCourses() {
               myCourses.map((value) => {
                 const image = value.courseId.image.includes("https")
                   ? value.courseId.image
-                  : `http://localhost:3000/images/course/${value.courseId.image}`;
+                  : `${url}/images/course/${value.courseId.image}`;
                 return (
                   <div key={value._id} className="my-courses-course-card">
                     <Link

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
+import { url } from "../../App";
 import "./components-css/NavBar.css";
 
 export default function AdminNavBar() {
@@ -12,7 +13,7 @@ export default function AdminNavBar() {
   //Hàm xử lý chức năng đăng xuất
   const handleLogout = () => {
     setIsLogin(false);
-    fetch("http://localhost:3000/me", {
+    fetch(`${url}/me`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +74,7 @@ export default function AdminNavBar() {
                     src={
                       user?.avatar?.includes("https")
                         ? user.avatar
-                        : `http://localhost:3000/images/user/${user?.avatar}`
+                        : `${url}/images/user/${user?.avatar}`
                     }
                     alt="avatar"
                     referrerPolicy="no-referrer"

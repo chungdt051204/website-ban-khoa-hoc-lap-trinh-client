@@ -1,6 +1,7 @@
 import { useContext, useState, useRef } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
+import { url } from "../../App";
 import "./components-css/UserProfile.css";
 
 export default function UserProfile() {
@@ -15,7 +16,7 @@ export default function UserProfile() {
   if (user !== null) {
     avatar = user.avatar.includes("https")
       ? user.avatar
-      : `http://localhost:3000/images/user/${user.avatar}`;
+      : `${url}/images/user/${user.avatar}`;
   }
   // Hàm xử lý cập nhật thông tin người dùng
   const handleSubmit = (e) => {
@@ -28,7 +29,7 @@ export default function UserProfile() {
     formData.append("newFullname", newFullname);
     formData.append("newPassword", passwordRef.current.value);
     formData.append("avatar", fileRef.current.files[0]);
-    fetch(`http://localhost:3000/me/${user._id}`, {
+    fetch(`${url}/me/${user._id}`, {
       method: "PUT",
       body: formData,
     })
