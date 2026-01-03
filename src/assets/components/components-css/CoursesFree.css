@@ -1,0 +1,17 @@
+.course-free-component {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 980px;
+  margin: 50px auto 0;
+}
+.course-free-component > .course-free-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  justify-content: space-around;
+}
+.course-free-track > .course-free-item {
+  width: 150px;
+}

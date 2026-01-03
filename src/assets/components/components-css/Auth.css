@@ -1,0 +1,128 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #dbefff);
+  font-family: "Segoe UI", sans-serif;
+}
+.auth-page > .formAuth {
+  width: 300px;
+  padding: 15px 40px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.formAuth > h2 {
+  color: #0070ba;
+  text-align: center;
+  margin-bottom: 20px;
+}
+form > .form-group {
+  position: relative;
+  margin: 8px 0;
+}
+.form-group > input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-group > label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 6px;
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+  transition: all 0.18s ease;
+  background: transparent;
+}
+.auth-page .form-group input:focus + label,
+.auth-page .form-group input:not(:placeholder-shown) + label {
+  top: -2px;
+  transform: none;
+  font-size: 12px;
+  color: #0070ba;
+  background: #fff;
+  padding: 0 6px;
+}
+.form-group > input:focus {
+  outline: none;
+  border-color: #0070ba;
+  box-shadow: 0 0 0 3px rgba(0, 120, 255, 0.06);
+}
+form > button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #0070ba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+form > button:hover {
+  background-color: #005fa3;
+}
+.formAuth > p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.formAuth > p > a {
+  color: #0070ba;
+  text-decoration: none;
+}
+.formAuth > p > a:hover {
+  text-decoration: underline;
+}
+form > .gender-group {
+  display: flex;
+  gap: 10px;
+}
+form > .avatar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 15px 0 10px;
+}
+form > span {
+  font-size: 14px;
+  color: red;
+}
+.avatar-group {
+  margin: 10px 0;
+}
+
+.custom-file-input {
+  font-size: 13px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.custom-file-input::file-selector-button {
+  background-color: #f1f5f9;
+  border: 1px solid #d1d5db;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.custom-file-input::file-selector-button:hover {
+  background-color: #e5e7eb;
+  border-color: #9ca3af;
+  color: #111827;
+}
+
+.custom-file-input::file-selector-button:active {
+  background-color: #d1d5db;
+}

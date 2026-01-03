@@ -1,0 +1,135 @@
+.dashboard-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px;
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 150px;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.dashboard-stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-stats-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.user-card {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.order-card {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.revenue-card {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.dashboard-card-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.dashboard-card-value {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.dashboard-chart-area {
+  margin-bottom: 40px;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bestseller-table-container {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bestseller-table-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.bestseller-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.dashboard-table-header {
+  background-color: #667eea;
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.dashboard-product-name-col {
+  width: 70%;
+  border-right: 1px solid #ddd;
+}
+
+.dashboard-quantity-col {
+  width: 30%;
+}
+
+.dashboard-table-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.dashboard-table-row:hover {
+  background-color: #e0e0e0;
+}
+
+.dashboard-product-cell {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+
+.dashboard-name-cell {
+  font-weight: 500;
+  border-right: 1px solid #ddd;
+}
+
+.dashboard-quantity-cell {
+  text-align: center;
+  font-weight: bold;
+  color: #667eea;
+}

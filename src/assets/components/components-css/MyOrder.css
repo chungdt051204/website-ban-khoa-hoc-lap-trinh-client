@@ -1,0 +1,108 @@
+.my-orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.my-orders-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.my-orders-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: #007bff;
+}
+
+.my-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.my-orders-table th,
+.my-orders-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.my-orders-table th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.my-orders-table td {
+  color: #555;
+}
+
+.my-orders-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.my-orders-order-id {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #007bff;
+}
+
+.my-orders-date {
+  color: #666;
+}
+
+.my-orders-total {
+  font-weight: bold;
+  color: red !important;
+}
+
+.my-orders-status {
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.my-orders-status-uncompleted {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.my-orders-status-completed {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.my-orders-action button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.my-orders-action button:hover {
+  background-color: #0056b3;
+}
+
+.my-orders-empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 50px;
+}

@@ -1,0 +1,31 @@
+.login-google-button {
+  display: flex;
+  width: 250px;
+  padding: 7px 15px;
+  margin: 15px -15px 0;
+  gap: 5px;
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: #3b82f6;
+  cursor: pointer;
+  align-items: center;
+}
+.google-icon-container {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.google-icon {
+  width: 30px;
+  height: 30px;
+}
+.button-text {
+  margin-left: 10px;
+  margin-top: 5px;
+}

@@ -1,0 +1,11 @@
+.carousel-track {
+  display: flex;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 1100px;
+  height: 500px;
+  margin: 40px auto 0;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}

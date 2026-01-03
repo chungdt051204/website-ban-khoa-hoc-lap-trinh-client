@@ -1,0 +1,109 @@
+.user-management {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.user-management-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f7f8f9;
+  font-family: Arial, sans-serif;
+}
+
+.role-filter-section {
+  margin-bottom: 20px;
+}
+.role-select {
+  padding: 8px 30px 8px 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23333" d="M6 9l-4-4h8z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.users-table th,
+.users-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.users-table thead {
+  background-color: #f0f2f5;
+}
+.table-header {
+  font-weight: bold;
+  color: #495057;
+}
+
+.action-column {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.table-row:last-child td {
+  border-bottom: none;
+}
+
+.action-btn {
+  padding: 6px 10px;
+  margin-right: 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.action-deactivate {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+.action-deactivate:hover {
+  background-color: #0056b3;
+}
+
+.action-reactivate {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
+.action-reactivate:hover {
+  background-color: #1e7e34;
+}
+
+.action-delete {
+  background-color: #f8f9fa;
+  color: red;
+  border: 1px solid #ccc;
+}
+.action-delete:hover {
+  background-color: #e2e6ea;
+}

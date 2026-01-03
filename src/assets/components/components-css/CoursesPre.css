@@ -1,0 +1,92 @@
+.course-pre-component {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 22px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(23, 30, 40, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.course-pre-component > h2 {
+  margin: 0 0 18px 6px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.course-pre-track {
+  max-height: 1100px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 18px;
+  align-items: start;
+  padding: 8px;
+}
+
+.course-pre-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  background: transparent;
+}
+
+.course-pre-item img {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(18, 24, 30, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: block;
+}
+
+.course-pre-item img[width],
+.course-pre-item img[height] {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  padding-bottom: 0;
+  object-fit: cover;
+}
+
+.course-pre-item > p:first-of-type {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #222;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 40px;
+}
+
+.course-pre-item > .price {
+  margin: 6px 0 0;
+  color: red; /* đỏ */
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.course-pre-item:hover img {
+  transform: translateY(-6px) scale(1.02);
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.course-pre-item img {
+  transition: transform 220ms ease;
+}
+
+.course-pre-track-wrapper {
+  padding: 8px;
+}

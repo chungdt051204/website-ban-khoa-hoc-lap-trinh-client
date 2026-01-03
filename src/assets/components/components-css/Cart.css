@@ -1,0 +1,282 @@
+:root {
+  --accent: #c8102e;
+  --muted: #888;
+  --border: #e6e6e6;
+  --bg: #fff;
+}
+
+.cart {
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cart-table thead th {
+  text-align: left;
+  padding: 18px 20px;
+  color: #333;
+  font-weight: 700;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-table tbody td {
+  padding: 18px 20px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+.col-product {
+  width: 70%;
+}
+
+.col-price {
+  width: 15%;
+  color: var(--muted);
+}
+
+.col-qty {
+  width: 15%;
+  text-align: center;
+}
+
+.col-total {
+  width: 15%;
+  text-align: center;
+  color: var(--muted);
+}
+
+.col-action {
+  width: 10%;
+  text-align: center;
+}
+
+.product-cell {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.product-thumb {
+  width: 64px;
+  height: 64px;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 12px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-name {
+  font-weight: 600;
+}
+
+.action-delete {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+tfoot td {
+  padding: 16px 20px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.left-actions label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-plain {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.right-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.total {
+  text-align: right;
+  min-width: 180px;
+  color: #333;
+}
+.total .label {
+  color: var(--muted);
+  display: block;
+  font-size: 13px;
+}
+.total .amount {
+  color: red;
+  font-weight: 700;
+  font-size: 18px;
+  margin-left: 8px;
+}
+.btn-buy {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn-buy a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.btn-buy a:visited {
+  color: inherit;
+}
+
+.cart-dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  width: 900px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cart-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-title {
+  margin-top: 0;
+  text-align: center;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.table-container {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th {
+  background: #f4f4f4;
+  padding: 10px;
+  text-align: left;
+}
+
+.cart-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.course-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.course-info img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.price-cell {
+  text-align: right;
+  font-weight: bold;
+}
+
+.total-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #fff9db;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+.total-box strong {
+  color: #e67e22;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-submit {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-close {
+  background: #bdc3c7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #2ecc71;
+}
+.btn-close:hover {
+  background: #95a5a6;
+}
