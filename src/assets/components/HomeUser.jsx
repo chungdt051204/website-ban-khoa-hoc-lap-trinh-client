@@ -7,7 +7,6 @@ import CoursesPre from "./CoursesPre";
 export default function HomeUser() {
   return (
     <>
-      <h1>Hello</h1>
       <UserNavBar />
       <Carousel />
       <CoursesFree />
