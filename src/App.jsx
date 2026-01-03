@@ -18,7 +18,8 @@ import QuanLyDanhMuc from "./assets/components/QuanLyDanhMuc";
 import QuanLyKhoaHoc from "./assets/components/QuanLyKhoaHoc";
 import QuanLyNguoiDung from "./assets/components/QuanLyNguoiDung";
 import QuanLyDonHang from "./assets/components/QuanLyDonHang";
-export const url = "http://localhost:3000";
+export const url =
+  "https://website-ban-khoa-hoc-lap-trinh-server-1.onrender.com";
 
 function App() {
   const [user, setUser] = useState(null);
