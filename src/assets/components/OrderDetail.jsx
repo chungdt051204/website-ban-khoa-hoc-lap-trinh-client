@@ -1,17 +1,17 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
 import { fetchAPI } from "../service/api";
 import { url } from "../../App";
 import Footer from "./Footer";
-import UserNavBar from "./UserNavBar";
 import "./components-css/OrderDetail.css";
 
-export default function OrderDetail() {
+export default function OrderDetail({ component }) {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const { refresh, setRefresh, user } = useContext(AppContext);
+  const { refresh, setRefresh, user, isLoading } = useContext(AppContext);
   const [orderWithOrderId, setOrderWithOrderId] = useState("");
   const [orderItemSelected, setOrderItemSelected] = useState(null);
   const dialog = useRef();
@@ -20,13 +20,16 @@ export default function OrderDetail() {
   };
 
   useEffect(() => {
-    if (id) {
-      fetchAPI({
-        url: `${url}/order?order_id=${id}`,
-        setData: setOrderWithOrderId,
-      });
-    }
-  }, [id, refresh]);
+    if (isLoading) return;
+    if (user) {
+      if (id) {
+        fetchAPI({
+          url: `${url}/order?order_id=${id}`,
+          setData: setOrderWithOrderId,
+        });
+      }
+    } else navigate("/");
+  }, [id, refresh, navigate, user, isLoading]);
   //Hàm mở popup dialog
   const handleOpenDialog = (value) => {
     setOrderItemSelected(value);
@@ -64,7 +67,7 @@ export default function OrderDetail() {
   };
   return (
     <div className="page-layout">
-      <UserNavBar />
+      {component}
       <div className="main-content">
         <div className="order-detail-container">
           <div className="order-detail-header">

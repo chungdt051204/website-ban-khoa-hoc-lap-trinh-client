@@ -18,10 +18,13 @@ import QuanLyDanhMuc from "./assets/components/QuanLyDanhMuc";
 import QuanLyKhoaHoc from "./assets/components/QuanLyKhoaHoc";
 import QuanLyNguoiDung from "./assets/components/QuanLyNguoiDung";
 import QuanLyDonHang from "./assets/components/QuanLyDonHang";
+import UserNavBar from "./assets/components/UserNavBar";
+import AdminNavBar from "./assets/components/AdminNavBar";
 export const url =
   "https://website-ban-khoa-hoc-lap-trinh-server-1.onrender.com";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
@@ -42,9 +45,8 @@ function App() {
         setIsLogin(true);
         setUser(data);
       })
-      .catch(async (err) => {
-        const { message } = await err.json();
-        console.log(message);
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [refresh]); //Khi giá trị refresh thay đổi useEffect sẽ được gọi lại
   useEffect(() => {
@@ -63,6 +65,7 @@ function App() {
     <>
       <AppContext.Provider
         value={{
+          isLoading,
           user,
           setUser,
           isLogin,
@@ -97,13 +100,19 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/my-courses" element={<MyCourses />} />
           <Route path="/my-orders" element={<MyOrder />} />
-          <Route path="/my-orders/detail" element={<OrderDetail />} />
+          <Route
+            path="/my-orders/detail"
+            element={<OrderDetail component={<UserNavBar />} />}
+          />
           <Route path="/admin" element={<HomeAdmin></HomeAdmin>} />
           <Route path="/admin/category" element={<QuanLyDanhMuc />} />
           <Route path="/admin/course" element={<QuanLyKhoaHoc />} />
           <Route path="/admin/user" element={<QuanLyNguoiDung />} />
           <Route path="/admin/order" element={<QuanLyDonHang />} />
-          <Route path="/admin/order/detail" element={<OrderDetail />} />
+          <Route
+            path="/admin/order/detail"
+            element={<OrderDetail component={<AdminNavBar />} />}
+          />
         </Routes>
         <ToastContainer position="top-center" autoClose={1000}></ToastContainer>
       </AppContext.Provider>

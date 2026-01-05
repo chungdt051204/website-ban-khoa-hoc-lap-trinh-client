@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import "./components-css/QuanLyDonHang.css";
 import AdminNavBar from "./AdminNavBar";
@@ -8,19 +8,24 @@ import { fetchAPI } from "../service/api";
 import { url } from "../../App";
 
 function QuanLyDonHang() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
-  const { orders, setOrders, refresh } = useContext(AppContext);
+  const { orders, setOrders, refresh, user, isLoading } =
+    useContext(AppContext);
   const [statusSelected, setStatusSelected] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (status) params.append("status", status);
-    fetchAPI({
-      url: `${url}/order?${params.toString()}`,
-      setData: setOrders,
-    });
-  }, [refresh, status, setOrders]);
+    if (isLoading) return;
+    if (user && user?.role === "admin") {
+      const params = new URLSearchParams();
+      if (status) params.append("status", status);
+      fetchAPI({
+        url: `${url}/order?${params.toString()}`,
+        setData: setOrders,
+      });
+    } else navigate("/");
+  }, [refresh, status, setOrders, user, navigate, isLoading]);
   //Hàm xử lý chọn trạng thái đơn hàng
   const handleStatusSelected = (value) => {
     setStatusSelected(value);

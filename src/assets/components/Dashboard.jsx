@@ -4,9 +4,12 @@ import { fetchAPI } from "../service/api";
 import { url } from "../../App";
 import DailyRevenueChart from "./DailyRevenueChart";
 import "./components-css/Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function DashBoard() {
-  const { refresh, courses, users, orders } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { isLoading, refresh, courses, users, orders, user, isLogin } =
+    useContext(AppContext);
   const [dailyRevenue, setDailyRevenue] = useState([]);
   const [bestSellerCourses, setBestSellerCourses] = useState([]);
   //Tính tổng doanh thu các đơn hàng đã thanh toán thành công
@@ -18,12 +21,17 @@ export default function DashBoard() {
     return totalRevenue;
   };
   useEffect(() => {
-    fetchAPI({ url: `${url}/daily-revenue`, setData: setDailyRevenue });
-    fetchAPI({
-      url: `${url}/best-seller-courses`,
-      setData: setBestSellerCourses,
-    });
-  }, [refresh]);
+    if (isLoading) {
+      return;
+    }
+    if (isLogin && user?.role === "admin") {
+      fetchAPI({ url: `${url}/daily-revenue`, setData: setDailyRevenue });
+      fetchAPI({
+        url: `${url}/best-seller-courses`,
+        setData: setBestSellerCourses,
+      });
+    } else navigate("/");
+  }, [refresh, user, navigate, isLogin, isLoading]);
   return (
     <>
       <div className="dashboard-container">

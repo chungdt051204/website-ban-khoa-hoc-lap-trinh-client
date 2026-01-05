@@ -33,7 +33,7 @@ export default function DetailCourse() {
   const enrollmentDetail = courseInEnrollment?.find(
     (value) => value.courseId._id === course._id
   );
-  const isOwned = enrollmentDetail != null ? true : false;
+  const isOwned = !!enrollmentDetail;
   //Hàm tính thời gian bình luận
   const getTimeComment = (value) => {
     const now = new Date();
@@ -98,7 +98,7 @@ export default function DetailCourse() {
       toast.warning("Bạn chưa đăng nhập");
       return;
     }
-    fetch(`${url}/cart`, {
+    fetch("${url}/cart", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

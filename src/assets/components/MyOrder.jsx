@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AppContext from "./AppContext";
 import Footer from "./Footer";
@@ -8,23 +8,25 @@ import { url } from "../../App";
 import "./components-css/MyOrder.css";
 
 export default function MyOrder() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
-  const { user, refresh } = useContext(AppContext);
+  const { user, refresh, isLoading } = useContext(AppContext);
   const [myOrders, setMyOrders] = useState([]);
   const [statusSelected, setStatusSelected] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams();
+    if (isLoading) return;
     if (user) {
+      const params = new URLSearchParams();
       params.append("user_id", user._id);
       if (status) params.append("status", status);
       fetchAPI({
         url: `${url}/order?${params.toString()}`,
         setData: setMyOrders,
       });
-    }
-  }, [user, refresh, status]);
+    } else navigate("/");
+  }, [user, refresh, status, navigate, isLoading]);
   //Hàm xử lý chọn trạng thái đơn hàng
   const handleStatusSelected = (value) => {
     setStatusSelected(value);

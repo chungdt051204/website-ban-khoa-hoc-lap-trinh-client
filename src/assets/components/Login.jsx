@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useContext } from "react";
 import AppContext from "./AppContext";
-import { url } from "../../App";
 import { toast } from "react-toastify";
+import { url } from "../../App";
 import LoginGoogle from "./LoginGoogle";
 import "./components-css/Auth.css";
 

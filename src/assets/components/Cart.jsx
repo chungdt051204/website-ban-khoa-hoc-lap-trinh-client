@@ -6,9 +6,11 @@ import { url } from "../../App";
 import UserNavBar from "./UserNavBar";
 import Footer from "./Footer";
 import "./components-css/Cart.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { user, refresh, setRefresh } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { isLoading, refresh, setRefresh, user } = useContext(AppContext);
   const [myCart, setMyCart] = useState(null);
   const [cartItemIdSelected, setCartItemIdSelected] = useState([]);
   const [partialIds, setPartialIds] = useState([]);
@@ -16,7 +18,6 @@ export default function Cart() {
   const dialog = useRef();
   const fullNameRef = useRef();
   const phoneRef = useRef();
-  const [phoneNotValid, setPhoneNotValid] = useState("");
 
   //Tính tổng tiền các khóa học được chọn mua
   const getCartItemSelectedTotal = () => {
@@ -42,10 +43,15 @@ export default function Cart() {
     return totalAmount;
   };
   useEffect(() => {
-    if (user) {
-      fetchAPI({ url: `${url}/cart?user_id=${user._id}`, setData: setMyCart });
+    if (isLoading) return;
+    if (!user) navigate("/");
+    else {
+      fetchAPI({
+        url: `${url}/cart?user_id=${user._id}`,
+        setData: setMyCart,
+      });
     }
-  }, [user, refresh]);
+  }, [user, refresh, navigate, isLoading]);
   //Hàm xử lý chọn nhiều item trong giỏ hàng
   const handleItemSelected = (id) => {
     // Nếu id khóa học chưa tồn tại trong mảng cartItemSelected => khóa học chưa được chọn
@@ -92,7 +98,7 @@ export default function Cart() {
   };
   //Hàm xử lý xóa nhiều item được chọn ra khỏi giỏ hàng
   const handleDeleteItemSelected = () => {
-    fetch(`${url}/cart?user_id=${user._id}`, {
+    fetch(`http://localhost:3000/cart?user_id=${user._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -145,40 +151,35 @@ export default function Cart() {
     )
       ? "Chưa hoàn thành"
       : "Đã hoàn thành";
-    if (phoneRef.current.value.length !== 10) {
-      setPhoneNotValid("Số điện thoại hợp lệ phải có 10 ký tự");
-      return;
-    } else {
-      fetch(`${url}/order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user._id,
-          fullName: fullNameRef.current.value,
-          phone: phoneRef.current.value,
-          orderItemSelected: orderItemSelected,
-          totalAmount: getTotalAmount(cartItemIdSelected),
-          remainingAmount:
-            getCartItemSelectedTotal() - getTotalAmount(cartItemIdSelected),
-          status: orderStatus,
-        }),
+    fetch("http://localhost:3000/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user._id,
+        fullName: fullNameRef.current.value,
+        phone: phoneRef.current.value,
+        orderItemSelected: orderItemSelected,
+        totalAmount: getTotalAmount(cartItemIdSelected),
+        remainingAmount:
+          getCartItemSelectedTotal() - getTotalAmount(cartItemIdSelected),
+        status: orderStatus,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        throw res;
       })
-        .then((res) => {
-          if (res.ok) return res.json();
-          throw res;
-        })
-        .then(({ message }) => {
-          toast.success(message);
-          setRefresh((prev) => prev + 1);
-          dialog.current.close();
-        })
-        .catch(async (err) => {
-          const { message } = await err.json();
-          console.log(message);
-        });
-    }
+      .then(({ message }) => {
+        toast.success(message);
+        setRefresh((prev) => prev + 1);
+        dialog.current.close();
+      })
+      .catch(async (err) => {
+        const { message } = await err.json();
+        console.log(message);
+      });
   };
   return (
     <div className="page-layout">
@@ -197,7 +198,7 @@ export default function Cart() {
               {myCart?.items?.map((value) => {
                 const image = value.courseId.image.includes("https")
                   ? value.courseId.image
-                  : `${url}/images/course/${value.courseId.image}`;
+                  : `http://localhost:3000/images/course/${value.courseId.image}`;
                 return (
                   <tr key={value._id}>
                     <td className="col-product">
@@ -294,17 +295,12 @@ export default function Cart() {
                   placeholder="Họ và tên"
                   required
                 />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <input
-                    type="text"
-                    ref={phoneRef}
-                    placeholder="Số điện thoại"
-                    required
-                  />
-                  {phoneNotValid && (
-                    <span style={{ color: "red" }}>{phoneNotValid}</span>
-                  )}
-                </div>
+                <input
+                  type="text"
+                  ref={phoneRef}
+                  placeholder="Số điện thoại"
+                  required
+                />
               </div>
               <div className="table-container">
                 <table className="cart-table">
@@ -321,7 +317,7 @@ export default function Cart() {
                       if (cartItemIdSelected.includes(value._id)) {
                         const image = value.courseId.image.includes("https")
                           ? value.courseId.image
-                          : `${url}/images/course/${value.courseId.image}`;
+                          : `http://localhost:3000/images/course/${value.courseId.image}`;
                         return (
                           <tr key={value._id}>
                             <td className="course-info">

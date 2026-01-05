@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
@@ -9,16 +9,21 @@ import Footer from "./Footer";
 import "./components-css/QuanLyNguoiDung.css";
 
 export default function QuanLyNguoiDung() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const role = searchParams.get("role");
-  const { users, setUsers, refresh, setRefresh } = useContext(AppContext);
+  const { users, setUsers, refresh, setRefresh, user, isLoading } =
+    useContext(AppContext);
   const [roleSelected, setRoleSelected] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (role) params.append("role", role);
-    fetchAPI({ url: `${url}/user?${params.toString()}`, setData: setUsers });
-  }, [refresh, setUsers, role]);
+    if (isLoading) return;
+    if (user && user?.role === "admin") {
+      const params = new URLSearchParams();
+      if (role) params.append("role", role);
+      fetchAPI({ url: `${url}/user?${params.toString()}`, setData: setUsers });
+    } else navigate("/");
+  }, [refresh, setUsers, role, user, navigate, isLoading]);
   //Hàm xử lý chọn vai trò
   const handleRoleSelected = (value) => {
     setRoleSelected(value);

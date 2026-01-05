@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AppContext from "./AppContext";
 import { fetchAPI } from "../service/api";
@@ -8,17 +8,21 @@ import Footer from "./Footer";
 import "./components-css/MyCourses.css";
 
 export default function MyCourses() {
-  const { user, refresh } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { user, refresh, isLoading } = useContext(AppContext);
   const [myCourses, setMyCourses] = useState([]);
 
   useEffect(() => {
+    if (isLoading) return;
     if (user) {
       fetchAPI({
         url: `${url}/enrollment?user_id=${user._id}`,
         setData: setMyCourses,
       });
+    } else {
+      navigate("/");
     }
-  }, [user, refresh]);
+  }, [user, refresh, navigate, isLoading]);
   return (
     <div className="page-layout">
       <UserNavBar />

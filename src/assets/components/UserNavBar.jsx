@@ -21,7 +21,7 @@ export default function UserNavBar() {
     fetchAPI({
       url: `${url}/course/search/suggestion?search=${encodeURIComponent(
         value
-      )}`,
+      ).trim()}`,
       setData: setCoursesWithSearchSuggestion,
     });
   };

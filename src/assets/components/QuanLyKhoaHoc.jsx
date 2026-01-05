@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
@@ -11,9 +11,17 @@ import Footer from "./Footer";
 import "./components-css/QuanLyKhoaHoc.css";
 
 export default function QuanLyKhoaHoc() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { courses, setCourses, categories, refresh, setRefresh } =
-    useContext(AppContext);
+  const {
+    courses,
+    setCourses,
+    categories,
+    refresh,
+    setRefresh,
+    user,
+    isLoading,
+  } = useContext(AppContext);
   const id = searchParams.get("id");
   const search = searchParams.get("search");
   const category_id = searchParams.get("category_id");
@@ -36,16 +44,28 @@ export default function QuanLyKhoaHoc() {
   const [errFile, setErrImage] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (search) params.append("search", encodeURIComponent(search));
-    if (category_id) params.append("category_id", category_id);
-    if (priceRange) params.append("price", priceRange);
-    fetchAPI({
-      url: `${url}/course?${params.toString()}`,
-      setData: setCourses,
-    });
-    setSearchValue("");
-  }, [refresh, setCourses, category_id, search, priceRange]);
+    if (isLoading) return;
+    if (user && user?.role === "admin") {
+      const params = new URLSearchParams();
+      if (search) params.append("search", encodeURIComponent(search));
+      if (category_id) params.append("category_id", category_id);
+      if (priceRange) params.append("price", priceRange);
+      fetchAPI({
+        url: `${url}/course?${params.toString()}`,
+        setData: setCourses,
+      });
+      setSearchValue("");
+    } else navigate("/");
+  }, [
+    refresh,
+    setCourses,
+    category_id,
+    search,
+    priceRange,
+    user,
+    navigate,
+    isLoading,
+  ]);
   //Hàm xử lý chức năng tìm kiếm khóa học
   const handleClickSearch = () => {
     setSearchParams((prev) => {

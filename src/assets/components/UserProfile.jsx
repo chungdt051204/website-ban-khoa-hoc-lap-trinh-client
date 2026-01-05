@@ -1,11 +1,13 @@
-import { useContext, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState, useRef, useEffect } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
 import { url } from "../../App";
 import "./components-css/UserProfile.css";
 
 export default function UserProfile() {
-  const { user, setRefresh } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { user, setRefresh, isLoading } = useContext(AppContext);
   const [newFullname, setNewFullname] = useState("");
   const passwordRef = useRef();
   const fileRef = useRef();
@@ -18,6 +20,10 @@ export default function UserProfile() {
       ? user.avatar
       : `${url}/images/user/${user.avatar}`;
   }
+  useEffect(() => {
+    if (isLoading) return;
+    if (!user) navigate("/");
+  });
   // Hàm xử lý cập nhật thông tin người dùng
   const handleSubmit = (e) => {
     e.preventDefault();

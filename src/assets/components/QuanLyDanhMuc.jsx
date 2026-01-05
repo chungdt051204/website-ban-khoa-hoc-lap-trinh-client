@@ -1,5 +1,5 @@
-import { Link, useSearchParams } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "./AppContext";
 import { toast } from "react-toastify";
 import { fetchAPI } from "../service/api";
@@ -9,7 +9,8 @@ import Footer from "./Footer";
 import "./components-css/QuanLyDanhMuc.css";
 
 export default function QuanLyDanhMuc() {
-  const { categories, setRefresh } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { categories, setRefresh, user, isLoading } = useContext(AppContext);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const addDialog = useRef();
@@ -19,6 +20,10 @@ export default function QuanLyDanhMuc() {
   const [err, setErr] = useState("");
   const [categoryWithId, setCategoryWithId] = useState("");
 
+  useEffect(() => {
+    if (isLoading) return;
+    if (!user || user?.role !== "admin") navigate("/");
+  }, [user, navigate, isLoading]);
   //Hàm xử lý chức năng thêm danh mục
   const handleAddSubmit = (e) => {
     e.preventDefault();
